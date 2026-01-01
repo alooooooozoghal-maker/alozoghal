@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الو ذغال - سفارش آنلاین و سریع زغال</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- شعله‌های آتش -->
+    <div class="fire left-fire">
+        <div class="flame"></div>
+        <div class="flame"></div>
+        <div class="flame"></div>
+    </div>
+    
+    <div class="fire right-fire">
+        <div class="flame"></div>
+        <div class="flame"></div>
+        <div class="flame"></div>
+    </div>
+
+    <div class="container">
+        <!-- هدر با تبلیغات و لوگو -->
+        <header>
+            <div class="ad-banner" id="adBanner">
+                <!-- تبلیغات در اینجا نمایش داده می‌شود -->
+            </div>
+            
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <h1 class="logo-text">الو ذغال</h1>
+                    <div class="logo-subtitle">سفارش آنلاین و سریع زغال</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- بخش اصلی فرم سفارش -->
+        <main>
+            <section class="product-section">
+                <h2><i class="fas fa-fire"></i> محصول ما</h2>
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-fire fa-4x"></i>
+                    </div>
+                    <div class="product-details">
+                        <h3>ذغال کبابی درجه یک</h3>
+                        <p class="product-description">ذغال مرغوب و با کیفیت مناسب برای کباب‌های خوشمزه. محصول مستقیم از طبیعت ایذه.</p>
+                        <div class="product-price">
+                            <span class="price">65,000</span>
+                            <span class="currency">تومان</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- سبد خرید -->
+            <section class="cart-section">
+                <h2><i class="fas fa-shopping-cart"></i> سبد خرید</h2>
+                <div class="cart-card">
+                    <div class="cart-controls">
+                        <button class="btn-qty" id="decreaseQty">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <div class="cart-info">
+                            <span id="productQty">0</span>
+                            <span> × کیسه ذغال کبابی</span>
+                        </div>
+                        <button class="btn-qty" id="increaseQty">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <div class="cart-total">
+                        <span>جمع کل:</span>
+                        <span id="totalPrice">0</span>
+                        <span>تومان</span>
+                    </div>
+                    <div class="cart-actions">
+                        <button class="btn btn-edit" id="editCart">
+                            <i class="fas fa-edit"></i> ویرایش
+                        </button>
+                        <button class="btn btn-clear" id="clearCart">
+                            <i class="fas fa-trash"></i> خالی کردن
+                        </button>
+                        <button class="btn btn-repeat" id="repeatOrder">
+                            <i class="fas fa-redo"></i> سفارش مجدد
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- فرم سفارش -->
+            <section class="order-section">
+                <h2><i class="fas fa-clipboard-list"></i> ثبت سفارش</h2>
+                <form id="orderForm">
+                    <div class="form-group">
+                        <label for="name"><i class="fas fa-user"></i> نام و نام خانوادگی</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone"><i class="fas fa-phone"></i> شماره تماس</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address"><i class="fas fa-map-marker-alt"></i> آدرس دقیق</label>
+                        <textarea id="address" rows="3" required></textarea>
+                        <button type="button" class="btn btn-location" id="getLocation">
+                            <i class="fas fa-map-pin"></i> دریافت لوکیشن
+                        </button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="notes"><i class="fas fa-sticky-note"></i> توضیحات (اختیاری)</label>
+                        <textarea id="notes" rows="2" placeholder="مثلاً: زمان تحویل، طبقه واحد و ..."></textarea>
+                    </div>
+                    
+                    <div class="order-actions">
+                        <button type="submit" class="btn btn-submit">
+                            <i class="fas fa-paper-plane"></i> ارسال سفارش
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- دکمه‌های ارسال به شبکه‌های اجتماعی -->
+            <section class="social-section">
+                <h2><i class="fas fa-share-alt"></i> ارسال سفارش از طریق</h2>
+                <div class="social-buttons">
+                    <button class="btn-social btn-telegram" id="sendTelegram">
+                        <i class="fab fa-telegram"></i> تلگرام
+                    </button>
+                    <button class="btn-social btn-whatsapp" id="sendWhatsapp">
+                        <i class="fab fa-whatsapp"></i> واتساپ
+                    </button>
+                    <button class="btn-social btn-sms" id="sendSMS">
+                        <i class="fas fa-sms"></i> پیامک
+                    </button>
+                </div>
+            </section>
+
+            <!-- لینک چالش -->
+            <section class="challenge-section">
+                <div class="challenge-card">
+                    <h3><i class="fas fa-gift"></i> چالش الو ذغال</h3>
+                    <p>الو ذغال رو ببر، ۳ کیسه ذغال جایزه بگیر!</p>
+                    <a href="https://aloozoghal-hash.github.io/-Mir-mir-/" target="_blank" class="btn btn-challenge">
+                        <i class="fas fa-external-link-alt"></i> شرکت در چالش
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <!-- فوتر -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>الو ذغال</h3>
+                    <p class="footer-slogan">الو ذغال از دل ایذه برای سفره‌های باصفای شما. هدف ما رساندن مرغوب‌ترین ذغال کباب در کمترین زمان است.</p>
+                    
+                    <div class="footer-contact">
+                        <p><i class="fas fa-phone"></i> شماره مدیریت: <span id="adminPhone">0912XXXXXXX</span></p>
+                        <p><i class="fab fa-telegram"></i> آیدی تلگرام: <span>5696902910</span></p>
+                    </div>
+                </div>
+                
+                <div class="footer-copyright">
+                    <p>تمامی حقوق محفوظ است © ۱۴۰۳</p>
+                    <p class="made-with">ساخته شده با <i class="fas fa-heart"></i> برای ایذه</p>
+                </div>
+                
+                <div class="footer-admin">
+                    <button class="btn btn-admin" id="adminPanel">
+                        <i class="fas fa-lock"></i> پنل مدیریت
+                    </button>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- پنل مدیریت تبلیغات -->
+    <div class="admin-modal" id="adminModal">
+        <div class="admin-modal-content">
+            <div class="admin-modal-header">
+                <h2><i class="fas fa-ad"></i> پنل مدیریت تبلیغات</h2>
+                <button class="btn-close" id="closeAdminModal">&times;</button>
+            </div>
+            <div class="admin-modal-body">
+                <div class="password-section">
+                    <input type="password" id="adminPassword" placeholder="رمز ورود به پنل مدیریت">
+                    <button class="btn btn-login" id="loginAdmin">ورود</button>
+                </div>
+                
+                <div class="admin-panel" id="adminPanelContent" style="display: none;">
+                    <div class="admin-tabs">
+                        <button class="admin-tab active" data-tab="add">افزودن تبلیغ</button>
+                        <button class="admin-tab" data-tab="manage">مدیریت تبلیغات</button>
+                    </div>
+                    
+                    <div class="admin-tab-content active" id="addTab">
+                        <form id="adForm">
+                            <div class="form-group">
+                                <label for="adTitle">عنوان تبلیغ</label>
+                                <input type="text" id="adTitle" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="adDescription">توضیحات تبلیغ</label>
+                                <textarea id="adDescription" rows="3" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="adImage">لینک عکس تبلیغ (URL)</label>
+                                <input type="url" id="adImage" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="adPhone">شماره تماس تبلیغ دهنده</label>
+                                <input type="tel" id="adPhone" required>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-submit">
+                                <i class="fas fa-plus"></i> ایجاد تبلیغ
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="admin-tab-content" id="manageTab">
+                        <div class="ads-list" id="adsList">
+                            <!-- لیست تبلیغات در اینجا نمایش داده می‌شود -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- اسکریپت‌ها -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- ثبت Service Worker برای PWA -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker ثبت شد با موفقیت:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('خطا در ثبت Service Worker:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
