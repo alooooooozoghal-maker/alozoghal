@@ -1,12 +1,11 @@
 {
   "name": "الو ذغال",
-  "short_name": "الوذغال",
-  "description": "سفارش آنلاین و سریع ذغال مرغوب در ایذه",
+  "short_name": "الو ذغال",
+  "description": "سفارش آنلاین ذغال مرغوب در ایذه",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0a0a0a",
   "theme_color": "#e2b04a",
-  "orientation": "portrait",
   "icons": [
     {
       "src": "https://raw.githubusercontent.com/aloozoghal-hash/alozoghal/main/8f6dcedf3dc3dbaa82c0df548bd962c9.jpg",
@@ -19,7 +18,5 @@
       "type": "image/jpeg"
     }
   ],
-  "categories": ["shopping", "food"],
-  "lang": "fa",
-  "dir": "rtl"
+  "orientation": "portrait"
 }
