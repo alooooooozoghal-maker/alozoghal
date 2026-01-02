@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الو ذغال | سفارش آنلاین ذغال مرغوب</title>
+    <title>الو ذغال | سفارش آنلاین ذغال </title>
     
     <!-- PWA Config -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#0a0a0a">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="icon" href="https://raw.githubusercontent.com/aloozoghal-hash/alozoghal/main/8f6dcedf3dc3dbaa82c0df548bd962c9.jpg">
 
     <!-- Font -->
@@ -602,6 +603,33 @@
             box-shadow: 0 8px 20px rgba(226, 176, 74, 0.5);
         }
         
+        /* دکمه اشتراک‌گذاری شناور */
+        .share-float {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 24px;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            color: white;
+        }
+        
+        .share-float:hover {
+            transform: scale(1.1) rotate(-10deg);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
+        }
+        
         /* دکمه مخفی پنل */
         .secret-admin-link {
             position: fixed;
@@ -730,30 +758,26 @@
         
         /* بنر نصب PWA */
         .pwa-banner {
-            display: none;
             position: fixed;
-            bottom: 90px;
+            bottom: 20px;
             left: 15px;
             right: 15px;
-            background: rgba(20, 20, 20, 0.95);
-            border: 1px solid var(--gold);
+            background: rgba(20, 20, 20, 0.98);
+            border: 2px solid var(--gold);
             border-radius: 20px;
             padding: 15px;
             z-index: 2000;
             backdrop-filter: blur(10px);
-            box-shadow: 0 0 20px rgba(226, 176, 74, 0.4);
+            box-shadow: 0 0 30px rgba(226, 176, 74, 0.6);
             animation: slideUp 0.5s ease-out;
-        }
-        
-        @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        .banner-content {
             display: flex;
             align-items: center;
             gap: 15px;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
         
         .banner-logo {
@@ -765,19 +789,42 @@
         
         .banner-text {
             flex: 1;
-            font-size: 13px;
+            font-size: 14px;
             color: #fff;
             text-align: right;
+        }
+        
+        .banner-text strong {
+            color: var(--gold);
+            display: block;
+            margin-bottom: 3px;
         }
         
         .btn-install {
             background: var(--gold);
             color: #000;
             border: none;
-            padding: 10px 15px;
+            padding: 10px 20px;
             border-radius: 10px;
             font-weight: bold;
             cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        
+        .btn-install:hover {
+            background: #d4a742;
+            transform: translateY(-2px);
+        }
+        
+        .btn-close-banner {
+            background: transparent;
+            color: #ccc;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 5px;
+            margin-right: -5px;
         }
     </style>
 </head>
@@ -793,11 +840,13 @@
 
     <!-- بنر نصب PWA -->
     <div id="pwa-banner" class="pwa-banner">
-        <div class="banner-content">
-            <img src="https://raw.githubusercontent.com/aloozoghal-hash/alozoghal/main/8f6dcedf3dc3dbaa82c0df548bd962c9.jpg" class="banner-logo">
-            <div class="banner-text"><b>نصب اپلیکیشن الو ذغال</b><br>برای دسترسی سریع و آفلاین</div>
-            <button class="btn-install" id="installBtn">نصب</button>
+        <button class="btn-close-banner" onclick="closePwaBanner()">×</button>
+        <img src="https://raw.githubusercontent.com/aloozoghal-hash/alozoghal/main/8f6dcedf3dc3dbaa82c0df548bd962c9.jpg" class="banner-logo">
+        <div class="banner-text">
+            <strong>نصب اپلیکیشن الو ذغال</strong>
+            برای دسترسی سریع، آفلاین و تجربه‌ای بهتر
         </div>
+        <button class="btn-install" id="installBtn">نصب اپلیکیشن</button>
     </div>
 
     <!-- هدر و لوگو -->
@@ -948,6 +997,9 @@
 
     <!-- دکمه تماس شناور -->
     <a href="tel:09220730628" class="call-float">📞</a>
+    
+    <!-- دکمه اشتراک‌گذاری شناور -->
+    <button class="share-float" id="shareBtn" title="اشتراک‌گذاری سایت">🔗</button>
 
     <!-- اسکریپت تبلیغات -->
     <script src="ads-simple.js"></script>
@@ -984,12 +1036,14 @@
                 }
             }
             
-            updateTicker();
-            // تغییر خودکار هر 20 ثانیه
-            setInterval(() => {
-                currentTickerIndex = (currentTickerIndex + 1) % tickerMessages.length;
+            if (tickerMessages.length > 0) {
                 updateTicker();
-            }, 20000);
+                // تغییر خودکار هر 20 ثانیه
+                setInterval(() => {
+                    currentTickerIndex = (currentTickerIndex + 1) % tickerMessages.length;
+                    updateTicker();
+                }, 20000);
+            }
         }
         
         function updateTicker() {
@@ -1318,20 +1372,52 @@ ${currentLocation ? `📍 لوکیشن: ${currentLocation}` : ''}
             document.getElementById('story-modal').style.display = 'none';
         }
         
-        // PWA Installation - فقط برای کاربرانی که نصب نکرده‌اند
+        // اشتراک‌گذاری سایت
+        document.getElementById('shareBtn').addEventListener('click', async () => {
+            const shareData = {
+                title: 'الو ذغال | سفارش آنلاین ذغال مرغوب',
+                text: '🔥 سفارش آنلاین ذغال مرغوب در ایذه 🔥\nسریع و آسان از الو ذغال خرید کنید!',
+                url: window.location.href
+            };
+            
+            try {
+                if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+                    await navigator.share(shareData);
+                    console.log('اشتراک‌گذاری موفقیت‌آمیز بود');
+                } else {
+                    // اگر Web Share API پشتیبانی نشود
+                    await navigator.clipboard.writeText(window.location.href);
+                    alert('✅ لینک سایت در کلیپ‌بورد کپی شد!\nمی‌توانید آن را برای دیگران ارسال کنید.');
+                }
+            } catch (err) {
+                console.log('خطا در اشتراک‌گذاری:', err);
+                // روش جایگزین: کپی لینک
+                try {
+                    await navigator.clipboard.writeText(window.location.href);
+                    alert('✅ لینک سایت در کلیپ‌بورد کپی شد!');
+                } catch (copyErr) {
+                    alert('❌ خطا در اشتراک‌گذاری. لطفاً لینک را دستی کپی کنید:\n' + window.location.href);
+                }
+            }
+        });
+        
+        // PWA Installation
         let deferredPrompt;
         let isAppInstalled = localStorage.getItem('aloozoghal_pwa_installed') === 'true';
         
+        // مخفی کردن بنر اگر کاربر اپ را نصب کرده باشد
+        if (isAppInstalled) {
+            document.getElementById('pwa-banner').style.display = 'none';
+        }
+        
         window.addEventListener('beforeinstallprompt', (e) => {
-            // فقط اگر اپ نصب نشده باشد، بنر را نشان بده
+            // جلوگیری از نمایش پیش‌فرض مرورگر
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // نمایش بنر نصب (اگر اپ نصب نشده باشد)
             if (!isAppInstalled) {
-                e.preventDefault();
-                deferredPrompt = e;
-                
-                // نمایش بنر نصب بعد از 3 ثانیه
-                setTimeout(() => {
-                    document.getElementById('pwa-banner').style.display = 'block';
-                }, 3000);
+                document.getElementById('pwa-banner').style.display = 'flex';
             }
         });
         
@@ -1340,8 +1426,10 @@ ${currentLocation ? `📍 لوکیشن: ${currentLocation}` : ''}
             localStorage.setItem('aloozoghal_pwa_installed', 'true');
             isAppInstalled = true;
             document.getElementById('pwa-banner').style.display = 'none';
+            alert('✅ اپلیکیشن الو ذغال با موفقیت نصب شد!');
         });
         
+        // نصب اپلیکیشن
         document.getElementById('installBtn').addEventListener('click', async () => {
             if (deferredPrompt) {
                 deferredPrompt.prompt();
@@ -1351,12 +1439,21 @@ ${currentLocation ? `📍 لوکیشن: ${currentLocation}` : ''}
                     console.log('User accepted the install prompt');
                     localStorage.setItem('aloozoghal_pwa_installed', 'true');
                     isAppInstalled = true;
+                    document.getElementById('pwa-banner').style.display = 'none';
                 }
                 
                 deferredPrompt = null;
-                document.getElementById('pwa-banner').style.display = 'none';
+            } else {
+                alert('❌ مرورگر شما از نصب اپلیکیشن پشتیبانی نمی‌کند.');
             }
         });
+        
+        // بستن بنر نصب
+        function closePwaBanner() {
+            document.getElementById('pwa-banner').style.display = 'none';
+            // ذخیره در localStorage که کاربر بنر را بسته است
+            localStorage.setItem('aloozoghal_pwa_banner_closed', 'true');
+        }
         
         // بارگذاری اولیه
         window.onload = function() {
@@ -1374,8 +1471,9 @@ ${currentLocation ? `📍 لوکیشن: ${currentLocation}` : ''}
                     .catch(err => console.log('Service Worker registration failed:', err));
             }
             
-            // اگر اپ نصب شده، بنر را نشان نده
-            if (isAppInstalled) {
+            // اگر کاربر قبلاً بنر را بسته، نشان نده
+            const bannerClosed = localStorage.getItem('aloozoghal_pwa_banner_closed') === 'true';
+            if (bannerClosed || isAppInstalled) {
                 document.getElementById('pwa-banner').style.display = 'none';
             }
         };
