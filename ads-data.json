@@ -1,3 +1,8 @@
+
+
+
+
+
 {
   "ads": [
     {
@@ -19,19 +24,3 @@
 
 
 
-{
-  "ads": [
-    {
-      "id": 1767329608494,
-      "title": "تبلیغات ویژه",
-      "description": "برای تبلیغات دراین قسمت تماس بگیرید",
-      "imageUrl": "https://s6.uupload.ir/files/۲۰۲۳۰۴۲۱_۱۳۳۳۲۹jpg.0_ma9i.jpg",
-      "phone": "09370214819",
-      "link": null
-    }
-  ],
-  "stories": [],
-  "tickers": [],
-  "generated_at": "2026-01-02T04:53:28.495Z",
-  "version": "1.1"
-}
