@@ -1,5 +1,5 @@
 // Service Worker for الو ذغال PWA
-const CACHE_NAME = 'aloozoghal-v1.1';
+const CACHE_NAME = 'aloozoghal-v1.3';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
