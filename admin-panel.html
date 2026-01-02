@@ -441,7 +441,7 @@
                     <li>کد JSON زیر را کپی کنید</li>
                     <li>به ریپازیتوری GitHub خود بروید</li>
                     <li>فایل ads-data.json را باز کنید</li>
-                    <li>محتوای قبلی را حذف و کد جدید را جایگزین کنید</li>
+                    <li>محتوای قبلی را حذف و کد زیر را جایگزین کنید</li>
                     <li>تغییرات را commit و push کنید</li>
                     <li>چند دقیقه صبر کنید تا سایت آپدیت شود</li>
                 </ol>
@@ -469,12 +469,7 @@
         // داده‌های اولیه
         let ads = [];
         let stories = [];
-        let tickers = [
-            "🔥 الو ذغال | سفارش آنلاین ذغال مرغوب | تحویل سریع در ایذه 🔥",
-            "🎉 با خرید 3 کیسه ذغال، یک بسته سبزی رایگان دریافت کنید!",
-            "🚚 تحویل رایگان برای سفارش‌های بالای 200,000 تومان",
-            "⭐ ذغال مرغوب کبابی با کیفیت عالی | ضمانت برگشت"
-        ];
+        let tickers = [];
         
         // بارگذاری داده‌ها از localStorage
         function loadData() {
@@ -514,6 +509,9 @@
             displayAds();
             displayStories();
             displayTickers();
+            
+            // تولید JSON
+            generateJSON();
         }
         
         // نمایش تب‌ها
@@ -552,6 +550,7 @@
             localStorage.setItem('aloozoghal_ads', JSON.stringify(ads));
             
             displayAds();
+            generateJSON();
             showAlert('تبلیغ با موفقیت اضافه شد!', 'success');
             
             // ریست فرم
@@ -589,6 +588,7 @@
             localStorage.setItem('aloozoghal_stories', JSON.stringify(stories));
             
             displayStories();
+            generateJSON();
             showAlert('استوری با موفقیت اضافه شد!', 'success');
             
             // ریست فرم
@@ -605,6 +605,7 @@
                 localStorage.setItem('aloozoghal_tickers', JSON.stringify(tickers));
                 
                 displayTickers();
+                generateJSON();
                 showAlert('متن متحرک با موفقیت اضافه شد!', 'success');
                 
                 // ریست فرم
@@ -691,6 +692,7 @@
                 ads = ads.filter(ad => ad.id !== id);
                 localStorage.setItem('aloozoghal_ads', JSON.stringify(ads));
                 displayAds();
+                generateJSON();
                 showAlert('تبلیغ با موفقیت حذف شد!', 'success');
             }
         }
@@ -701,6 +703,7 @@
                 stories = stories.filter(story => story.id !== id);
                 localStorage.setItem('aloozoghal_stories', JSON.stringify(stories));
                 displayStories();
+                generateJSON();
                 showAlert('استوری با موفقیت حذف شد!', 'success');
             }
         }
@@ -711,6 +714,7 @@
                 tickers.splice(index, 1);
                 localStorage.setItem('aloozoghal_tickers', JSON.stringify(tickers));
                 displayTickers();
+                generateJSON();
                 showAlert('متن با موفقیت حذف شد!', 'success');
             }
         }
@@ -729,6 +733,7 @@
                 ads = ads.filter(a => a.id !== id);
                 localStorage.setItem('aloozoghal_ads', JSON.stringify(ads));
                 displayAds();
+                generateJSON();
                 
                 showAlert('اطلاعات تبلیغ برای ویرایش بارگذاری شد. پس از ویرایش دکمه "افزودن تبلیغ" را بزنید.', 'success');
             }
@@ -747,19 +752,20 @@
                 stories = stories.filter(s => s.id !== id);
                 localStorage.setItem('aloozoghal_stories', JSON.stringify(stories));
                 displayStories();
+                generateJSON();
                 
                 showAlert('اطلاعات استوری برای ویرایش بارگذاری شد. پس از ویرایش دکمه "افزودن استوری" را بزنید.', 'success');
             }
         }
         
-        // تولید JSON
+        // تولید JSON ثابت
         function generateJSON() {
             const jsonData = {
-                ads: ads,
-                stories: stories,
-                tickers: tickers,
-                generated_at: new Date().toISOString(),
-                version: "1.1" // نسخه جدید با پشتیبانی از شماره تماس در استوری‌ها
+                "ads": ads,
+                "stories": stories,
+                "tickers": tickers,
+                "generated_at": new Date().toISOString(),
+                "version": "1.1"
             };
             
             const jsonOutput = document.getElementById('json-output');
@@ -811,12 +817,7 @@
                 
                 ads = [];
                 stories = [];
-                tickers = [
-                    "🔥 الو ذغال | سفارش آنلاین ذغال مرغوب | تحویل سریع در ایذه 🔥",
-                    "🎉 با خرید 3 کیسه ذغال، یک بسته سبزی رایگان دریافت کنید!",
-                    "🚚 تحویل رایگان برای سفارش‌های بالای 200,000 تومان",
-                    "⭐ ذغال مرغوب کبابی با کیفیت عالی | ضمانت برگشت"
-                ];
+                tickers = [];
                 
                 displayAds();
                 displayStories();
@@ -842,8 +843,7 @@
         // بارگذاری اولیه
         window.onload = function() {
             loadData();
-            generateJSON();
         };
     </script>
 </body>
-  </html>
+    </html>
