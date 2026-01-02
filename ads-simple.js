@@ -1,5 +1,5 @@
 // سیستم بارگذاری تبلیغات برای الو ذغال
-// نسخه 1.1 - بدون تبلیغات پیش‌فرض
+// نسخه 1.3 - بدون هیچ تبلیغ پیشفرض
 
 const ADS_DATA_URL = 'ads-data.json';
 
@@ -63,7 +63,7 @@ function loadFromLocalStorage() {
     // تیکرها در initTicker در index.html مدیریت می‌شوند
 }
 
-// نمایش تبلیغات VIP
+// نمایش تبلیغات VIP - با چرخش 5 ثانیه‌ای
 function displayAds(ads) {
     const container = document.getElementById('vip-ad-container');
     if (!container) return;
@@ -89,15 +89,15 @@ function displayAds(ads) {
     
     container.innerHTML = adHtml;
     
-    // تغییر خودکار تبلیغ هر 30 ثانیه
-    setTimeout(() => {
-        if(ads.length > 1) {
+    // تغییر خودکار تبلیغ هر 5 ثانیه (اگر بیش از یک تبلیغ وجود داشته باشد)
+    if (ads.length > 1) {
+        setTimeout(() => {
             displayAds(ads);
-        }
-    }, 30000);
+        }, 5000);
+    }
 }
 
-// نمایش استوری‌ها
+// نمایش استوری‌ها - کاملاً خالی، هیچ استوری ثابتی وجود ندارد
 function displayStories(stories) {
     const container = document.getElementById('stories-container');
     if (!container) return;
@@ -110,19 +110,9 @@ function displayStories(stories) {
     container.style.display = 'flex';
     container.innerHTML = '';
     
-    // اضافه کردن دکمه افزودن استوری (فقط برای مدیر)
-    const addStoryHtml = `
-        <div class="story-item">
-            <div class="story-ring add-btn" onclick="window.open('admin-panel.html', '_blank')" style="cursor: pointer; border: 2px dashed var(--gold);">
-                <span style="font-size: 24px; color: var(--gold);">+</span>
-            </div>
-            <span class="story-title">تبلیغ شما</span>
-        </div>
-    `;
+    // فقط استوری‌های بارگذاری شده نمایش داده می‌شوند
+    // هیچ استوری ثابت "تبلیغ شما" وجود ندارد
     
-    container.innerHTML = addStoryHtml;
-    
-    // اضافه کردن استوری‌ها
     stories.forEach((story, index) => {
         const storyHtml = `
             <div class="story-item" onclick="openStory(${index})">
