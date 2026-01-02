@@ -845,8 +845,6 @@
                 <input type="tel" id="custPhone" class="form-input" placeholder="مثال: 09123456789" dir="ltr" pattern="[0-9]{11}" required>
             </div>
             
-            <!-- هشدار حذف شده -->
-            
             <div class="form-group">
                 <label class="form-label">🕒 زمان تحویل:</label>
                 <select id="delivTime" class="form-select">
@@ -915,7 +913,7 @@
             <div class="send-buttons">
                 <a id="waLink" href="#" class="btn btn-success">📱 ارسال به واتساپ</a>
                 <a id="smsLink" href="#" class="btn btn-warning">📨 ارسال پیامک</a>
-                <a id="tgLink" href="#" class="btn btn-info">✈️ ارسال به تلگرام</a>
+                <button id="tgBtn" class="btn btn-info">✈️ ارسال به تلگرام</button>
             </div>
             
             <div class="btn-action-group">
@@ -958,18 +956,16 @@
     <script>
         // تنظیمات اولیه
         const SECRET_CODE = "علی نادریان 1362541";
+        const GOOGLE_BRIDGE_URL = "https://script.google.com/macros/s/AKfycbyLQjEqmjs5Re2m7nf3lGU_IZQU0ILuFgiJWxrEQ306AgUy1zW090quuwv1QLWVOQyV/exec";
+        
         let secretEntered = false;
         let currentLocation = "";
         let coalQty = 1;
         const COAL_PRICE = 65000;
+        let finalMsg = "";
         
-        // تیکر تبلیغاتی
-        const tickerMessages = [
-            "🔥 الو ذغال | سفارش آنلاین ذغال مرغوب | تحویل سریع در ایذه 🔥",
-            "🎉 با خرید 3 کیسه ذغال، یک بسته سبزی رایگان دریافت کنید!",
-            "🚚 تحویل رایگان برای سفارش‌های بالای 200,000 تومان",
-            "⭐ ذغال مرغوب کبابی با کیفیت عالی | ضمانت برگشت"
-        ];
+        // تیکر تبلیغاتی - از localStorage بارگیری می‌شود
+        const tickerMessages = [];
         
         let currentTickerIndex = 0;
         
@@ -1104,7 +1100,7 @@
             document.getElementById('inv-price').textContent = `${totalPrice.toLocaleString()} تومان`;
             
             // تولید پیام سفارش
-            const orderMessage = `سفارش جدید الو ذغال 🔥
+            finalMsg = `سفارش جدید الو ذغال 🔥
             
 👤 نام: ${name}
 📱 تلفن: ${phone}
@@ -1141,20 +1137,8 @@ ${currentLocation ? `📍 لوکیشن: ${currentLocation}` : ''}
             
             document.getElementById('smsLink').href = `sms:989220730628?body=${smsMessage}`;
             
-            // لینک تلگرام (با استفاده از ربات)
-            const tgMessage = encodeURIComponent(`📦 سفارش جدید الو ذغال
-
-👤 ${name}
-📱 ${phone}
-🔥 ${coalQty} کیسه ذغال
-💰 ${totalPrice.toLocaleString()} تومان
-🕒 ${time}
-📍 ${addr}
-${currentLocation ? `🗺️ ${currentLocation}` : ''}
-
-⏰ ${new Date().toLocaleString('fa-IR')}`);
-            
-            document.getElementById('tgLink').href = `https://api.telegram.org/bot8218710893:AAEXn2Q7VmPt32RSkz0fxY0jja6DdUld1xE/sendMessage?chat_id=5696902910&text=${tgMessage}`;
+            // تنظیم event listener برای دکمه تلگرام
+            document.getElementById('tgBtn').onclick = sendToTelegram;
             
             // نمایش فاکتور و مخفی کردن فرم
             document.getElementById('form-area').style.display = 'none';
@@ -1162,6 +1146,30 @@ ${currentLocation ? `🗺️ ${currentLocation}` : ''}
             
             // اسکرول به فاکتور
             document.getElementById('invoice').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // ارسال به تلگرام از طریق Google Apps Script
+        async function sendToTelegram() {
+            const btn = document.getElementById('tgBtn'); 
+            btn.disabled = true; 
+            btn.innerText = "⏳ در حال ارسال سیستمی...";
+            
+            try {
+                // ارسال داده‌ها به Google Apps Script
+                await fetch(GOOGLE_BRIDGE_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: finalMsg })
+                });
+
+                alert("✅ سفارش شما با موفقیت ثبت شد و برای مدیریت ارسال گردید.");
+            } catch (e) {
+                alert("ارسال با خطا مواجه شد. لطفاً از پیامک استفاده کنید.");
+            } finally {
+                btn.disabled = false; 
+                btn.innerText = "✈️ ارسال به تلگرام";
+            }
         }
         
         // ویرایش سفارش
@@ -1310,17 +1318,28 @@ ${currentLocation ? `🗺️ ${currentLocation}` : ''}
             document.getElementById('story-modal').style.display = 'none';
         }
         
-        // PWA Installation
+        // PWA Installation - فقط برای کاربرانی که نصب نکرده‌اند
         let deferredPrompt;
+        let isAppInstalled = localStorage.getItem('aloozoghal_pwa_installed') === 'true';
         
         window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            
-            // نمایش بنر نصب بعد از 3 ثانیه
-            setTimeout(() => {
-                document.getElementById('pwa-banner').style.display = 'block';
-            }, 3000);
+            // فقط اگر اپ نصب نشده باشد، بنر را نشان بده
+            if (!isAppInstalled) {
+                e.preventDefault();
+                deferredPrompt = e;
+                
+                // نمایش بنر نصب بعد از 3 ثانیه
+                setTimeout(() => {
+                    document.getElementById('pwa-banner').style.display = 'block';
+                }, 3000);
+            }
+        });
+        
+        // رویداد هنگامی که اپ نصب شد
+        window.addEventListener('appinstalled', () => {
+            localStorage.setItem('aloozoghal_pwa_installed', 'true');
+            isAppInstalled = true;
+            document.getElementById('pwa-banner').style.display = 'none';
         });
         
         document.getElementById('installBtn').addEventListener('click', async () => {
@@ -1330,6 +1349,8 @@ ${currentLocation ? `🗺️ ${currentLocation}` : ''}
                 
                 if (outcome === 'accepted') {
                     console.log('User accepted the install prompt');
+                    localStorage.setItem('aloozoghal_pwa_installed', 'true');
+                    isAppInstalled = true;
                 }
                 
                 deferredPrompt = null;
@@ -1346,18 +1367,18 @@ ${currentLocation ? `🗺️ ${currentLocation}` : ''}
                 loadAds();
             }
             
-            // بارگذاری استوری‌ها
-            if(typeof loadStories === 'function') {
-                loadStories();
-            }
-            
             // ثبت سرویس ورکر
             if('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('service-worker.js')
                     .then(reg => console.log('Service Worker registered'))
                     .catch(err => console.log('Service Worker registration failed:', err));
             }
+            
+            // اگر اپ نصب شده، بنر را نشان نده
+            if (isAppInstalled) {
+                document.getElementById('pwa-banner').style.display = 'none';
+            }
         };
     </script>
 </body>
-                    </html>
+    </html>
