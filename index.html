@@ -11,7 +11,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="icon" href="https://raw.githubusercontent.com/aloozoghal-hash/alozoghal/main/8f6dcedf3dc3dbaa82c0df548bd962c9.jpg">
+    <link rel="icon" href="https://raw.githubusercontent.com/alooooooozoghal-maker/alozoghal/main/8f6dcedf3dc3dbaa82c0df548bd962c9.jpg">
 
     <!-- Font -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
@@ -44,7 +44,7 @@
             padding-bottom: 50px;
         }
         
-        /* تیکر تبلیغاتی (بزرگتر و شکیل‌تر شده) */
+        /* تیکر تبلیغاتی */
         .ticker-container {
             width: 100%;
             max-width: 500px;
@@ -213,7 +213,7 @@
             text-overflow: ellipsis;
         }
         
-        /* کادر تخفیف زیر استوری‌ها (نصف عرض صفحه شده) */
+        /* کادر تخفیف */
         .discount-box {
             width: 50%;
             max-width: 225px;
@@ -643,7 +643,7 @@
             box-shadow: 0 8px 20px rgba(226, 176, 74, 0.5);
         }
         
-        /* دکمه اشتراک‌گذاری شناور (مستطیل شده) */
+        /* دکمه اشتراک‌گذاری شناور */
         .share-float {
             position: fixed;
             bottom: 90px;
@@ -818,7 +818,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            display: none; /* ابتدا مخفی */
+            display: none;
         }
         
         @keyframes slideUp {
@@ -875,21 +875,18 @@
     </style>
 </head>
 <body>
-
     <!-- دکمه مخفی پنل مدیریت -->
     <button class="secret-admin-link" onclick="window.open('admin-panel.html', '_blank')" title="ورود به پنل مدیریت">⚙️</button>
 
-    <!-- تیکر تبلیغاتی (بزرگتر و شکیل‌تر شده) -->
+    <!-- تیکر تبلیغاتی -->
     <div class="ticker-container">
-        <div class="ticker-text" id="ticker-box">
-            <!-- تیکرها از طریق JavaScript لود می‌شوند -->
-        </div>
+        <div class="ticker-text" id="ticker-box"></div>
     </div>
 
     <!-- بنر نصب PWA -->
     <div id="pwa-banner" class="pwa-banner">
         <button class="btn-close-banner" onclick="closePwaBanner()">×</button>
-        <img src="https://raw.githubusercontent.com/aloozoghal-hash/alozoghal/main/8f6dcedf3dc3dbaa82c0df548bd962c9.jpg" class="banner-logo">
+        <img src="https://raw.githubusercontent.com/alooooooozoghal-maker/alozoghal/main/8f6dcedf3dc3dbaa82c0df548bd962c9.jpg" class="banner-logo">
         <div class="banner-text">
             <strong>نصب اپلیکیشن الو ذغال</strong>
             برای دسترسی سریع، آفلاین و تجربه‌ای بهتر
@@ -901,37 +898,27 @@
     <div class="header-section">
         <div class="logo-container">
             <span class="fire-anim">🔥</span>
-            <img src="https://raw.githubusercontent.com/aloozoghal-hash/alozoghal/main/8f6dcedf3dc3dbaa82c0df548bd962c9.jpg" class="main-logo">
+            <img src="https://raw.githubusercontent.com/alooooooozoghal-maker/alozoghal/main/8f6dcedf3dc3dbaa82c0df548bd962c9.jpg" class="main-logo">
             <span class="fire-anim">🔥</span>
         </div>
         <div class="brand-name">الو ذغال</div>
         <div class="brand-slogan">سفارش آنلاین و سریع ذغال</div>
         
         <!-- استوری‌ها -->
-        <div class="stories-container" id="stories-container">
-            <!-- استوری‌ها از طریق JavaScript لود می‌شوند -->
-        </div>
+        <div class="stories-container" id="stories-container"></div>
 
-        <!-- کادر تخفیف (نصف عرض صفحه شده) -->
-        <div class="discount-box">
-            💯 توی ایذه امروز کی تخفیف گذاشته👇
-        </div>
+        <!-- کادر تخفیف -->
+        <div class="discount-box">💯 توی ایذه امروز کی تخفیف گذاشته👇</div>
     </div>
 
     <!-- تبلیغ VIP -->
-    <div id="vip-ad-container">
-        <!-- تبلیغات از طریق JavaScript لود می‌شوند -->
-    </div>
+    <div id="vip-ad-container"></div>
 
     <!-- مودال استوری -->
     <div id="story-modal" class="story-modal">
         <button class="story-close" onclick="closeStory()">×</button>
-        <div class="story-content" id="story-content">
-            <!-- محتوای استوری -->
-        </div>
-        <div class="story-buttons" id="story-buttons">
-            <!-- دکمه‌های تماس و لینک -->
-        </div>
+        <div class="story-content" id="story-content"></div>
+        <div class="story-buttons" id="story-buttons"></div>
     </div>
 
     <!-- کارت سفارش -->
@@ -1032,7 +1019,7 @@
 
     <!-- فوتر -->
     <footer class="site-footer">
-        <img src="https://raw.githubusercontent.com/aloozoghal-hash/alozoghal/main/8f6dcedf3dc3dbaa82c0df548bd962c9.jpg" class="footer-logo-small">
+        <img src="https://raw.githubusercontent.com/alooooooozoghal-maker/alozoghal/main/8f6dcedf3dc3dbaa82c0df548bd962c9.jpg" class="footer-logo-small">
         <div class="footer-title">درباره الو ذغال</div>
         <p class="footer-text">
             الو ذغال از دل ایذه برای سفره‌های باصفای شما. هدف ما رساندن مرغوب‌ترین ذغال کباب در کمترین زمان است.
@@ -1051,7 +1038,7 @@
     <!-- دکمه تماس شناور -->
     <a href="tel:09220730628" class="call-float">📞</a>
     
-    <!-- دکمه اشتراک‌گذاری شناور (مستطیل شده) -->
+    <!-- دکمه اشتراک‌گذاری شناور -->
     <button class="share-float" id="shareBtn" title="اشتراک‌گذاری سایت">
         <span style="font-size: 14px;">💥</span>
         <span>الوذغال</span>
@@ -1075,14 +1062,13 @@
         const COAL_PRICE = 65000;
         let finalMsg = "";
         
-        // تیکرها - از localStorage بارگیری می‌شوند
+        // تیکرها
         let tickers = [];
         let currentTickerIndex = 0;
         let tickerInterval;
         
         // فوری لود کردن تیکرها
         function initTicker() {
-            // بارگذاری تیکرها از localStorage
             const savedTickers = localStorage.getItem('aloozoghal_tickers');
             if(savedTickers) {
                 try {
@@ -1095,7 +1081,6 @@
                 }
             }
             
-            // اگر تیکری نبود، یک تیکر پیش‌فرض اضافه کن
             if (tickers.length === 0) {
                 tickers = [
                     {
@@ -1106,59 +1091,36 @@
                 localStorage.setItem('aloozoghal_tickers', JSON.stringify(tickers));
             }
             
-            // نمایش اولین تیکر فوری
             updateTicker();
-            
-            // تغییر خودکار تیکرها
             startTickerRotation();
         }
         
-        // چرخش تیکرها
         function startTickerRotation() {
-            if (tickerInterval) {
-                clearInterval(tickerInterval);
-            }
+            if (tickerInterval) clearInterval(tickerInterval);
             
             if (tickers.length > 1) {
                 tickerInterval = setInterval(() => {
                     currentTickerIndex = (currentTickerIndex + 1) % tickers.length;
                     updateTicker();
-                }, 20000); // هر 20 ثانیه
+                }, 20000);
             }
         }
         
-        // آپدیت تیکر
         function updateTicker() {
             if(tickers.length === 0) return;
             
             const ticker = tickers[currentTickerIndex];
             const tickerBox = document.getElementById('ticker-box');
             
-            // اگر تیکر شیء دارای phone است
             if (typeof ticker === 'object' && ticker.phone) {
-                tickerBox.innerHTML = `
-                    <a href="tel:${ticker.phone}" class="ticker-link">
-                        ${ticker.text}
-                    </a>
-                `;
+                tickerBox.innerHTML = `<a href="tel:${ticker.phone}" class="ticker-link">${ticker.text}</a>`;
             } else if (typeof ticker === 'string') {
-                // اگر تیکر رشته ساده است (برای سازگاری با داده‌های قدیمی)
-                tickerBox.innerHTML = `
-                    <span class="ticker-link">
-                        ${ticker}
-                    </span>
-                `;
+                tickerBox.innerHTML = `<span class="ticker-link">${ticker}</span>`;
             } else if (typeof ticker === 'object' && ticker.text) {
-                // اگر تیکر شیء است اما phone ندارد
-                tickerBox.innerHTML = `
-                    <span class="ticker-link">
-                        ${ticker.text}
-                    </span>
-                `;
+                tickerBox.innerHTML = `<span class="ticker-link">${ticker.text}</span>`;
             }
         }
         
-        // مدیریت کمیت
         function updateQty(type, change) {
             if(type === 'coal') {
                 const newQty = coalQty + change;
@@ -1169,7 +1131,6 @@
             }
         }
         
-        // دریافت لوکیشن
         function getLocation() {
             const gpsBtn = document.getElementById('gpsBtn');
             if(!navigator.geolocation) {
@@ -1190,8 +1151,6 @@
                     gpsBtn.style.background = 'rgba(37, 211, 102, 0.2)';
                     gpsBtn.style.borderColor = '#25D366';
                     gpsBtn.style.color = '#25D366';
-                    
-                    // نمایش هشدار موفقیت
                     showAlert('لوکیشن شما با موفقیت ثبت شد!', 'success');
                 },
                 (error) => {
@@ -1200,36 +1159,28 @@
                     gpsBtn.style.background = 'rgba(255, 0, 0, 0.2)';
                     gpsBtn.style.borderColor = '#ff0000';
                     gpsBtn.style.color = '#ff0000';
-                    
                     showAlert('خطا در دریافت موقعیت. لطفاً دسترسی به موقعیت مکانی را فعال کنید.', 'info');
                 }
             );
         }
         
-        // نمایش هشدار
         function showAlert(message, type = 'info') {
             const alertDiv = document.createElement('div');
             alertDiv.className = `alert alert-${type}`;
             alertDiv.textContent = message;
             
-            // اضافه کردن به فرم
             const formArea = document.getElementById('form-area');
             formArea.insertBefore(alertDiv, formArea.firstChild);
             
-            // حذف خودکار بعد از 5 ثانیه
-            setTimeout(() => {
-                alertDiv.remove();
-            }, 5000);
+            setTimeout(() => alertDiv.remove(), 5000);
         }
         
-        // تولید فاکتور
         function generateInvoice() {
             const name = document.getElementById('custName').value.trim();
             const phone = document.getElementById('custPhone').value.trim();
             const addr = document.getElementById('custAddr').value.trim();
             const time = document.getElementById('delivTime').value;
             
-            // اعتبارسنجی
             if(!name || name.length < 2) {
                 showAlert('لطفاً نام کامل خود را وارد کنید (حداقل ۲ حرف)', 'info');
                 document.getElementById('custName').focus();
@@ -1248,10 +1199,8 @@
                 return;
             }
             
-            // محاسبه قیمت
             const totalPrice = coalQty * COAL_PRICE;
             
-            // پر کردن فاکتور
             document.getElementById('inv-name').textContent = name;
             document.getElementById('inv-phone').textContent = phone;
             document.getElementById('inv-qty-coal').textContent = `${coalQty} کیسه`;
@@ -1260,7 +1209,6 @@
             document.getElementById('inv-location').textContent = currentLocation ? 'ثبت شده' : 'ثبت نشده';
             document.getElementById('inv-price').textContent = `${totalPrice.toLocaleString()} تومان`;
             
-            // تولید پیام سفارش
             finalMsg = `سفارش جدید الو ذغال 🔥
             
 👤 نام: ${name}
@@ -1272,7 +1220,6 @@
 ${currentLocation ? `📍 لوکیشن: ${currentLocation}` : ''}
 ⏰ زمان سفارش: ${new Date().toLocaleString('fa-IR')}`;
             
-            // لینک واتساپ
             const waMessage = encodeURIComponent(`سلام الو ذغال 🔥
 
 👤 نام: ${name}
@@ -1287,7 +1234,6 @@ ${currentLocation ? `📍 لوکیشن: ${currentLocation}` : ''}
             
             document.getElementById('waLink').href = `https://wa.me/989220730628?text=${waMessage}`;
             
-            // لینک پیامک
             const smsMessage = encodeURIComponent(`سفارش الو ذغال
 نام: ${name}
 تلفن: ${phone}
@@ -1297,33 +1243,25 @@ ${currentLocation ? `📍 لوکیشن: ${currentLocation}` : ''}
 آدرس: ${addr}`);
             
             document.getElementById('smsLink').href = `sms:989220730628?body=${smsMessage}`;
-            
-            // تنظیم event listener برای دکمه تلگرام
             document.getElementById('tgBtn').onclick = sendToTelegram;
             
-            // نمایش فاکتور و مخفی کردن فرم
             document.getElementById('form-area').style.display = 'none';
             document.getElementById('invoice').style.display = 'block';
-            
-            // اسکرول به فاکتور
             document.getElementById('invoice').scrollIntoView({ behavior: 'smooth' });
         }
         
-        // ارسال به تلگرام از طریق Google Apps Script
         async function sendToTelegram() {
             const btn = document.getElementById('tgBtn'); 
             btn.disabled = true; 
             btn.innerText = "⏳ در حال ارسال سیستمی...";
             
             try {
-                // ارسال داده‌ها به Google Apps Script
                 await fetch(GOOGLE_BRIDGE_URL, {
                     method: 'POST',
                     mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ message: finalMsg })
                 });
-
                 alert("✅ سفارش شما با موفقیت ثبت شد و برای مدیریت ارسال گردید.");
             } catch (e) {
                 alert("ارسال با خطا مواجه شد. لطفاً از پیامک استفاده کنید.");
@@ -1333,25 +1271,19 @@ ${currentLocation ? `📍 لوکیشن: ${currentLocation}` : ''}
             }
         }
         
-        // ویرایش سفارش
         function editOrder() {
             document.getElementById('form-area').style.display = 'block';
             document.getElementById('invoice').style.display = 'none';
         }
         
-        // ریست فرم
         function resetForm() {
-            // ریست مقادیر
             coalQty = 1;
             currentLocation = "";
-            
-            // ریست فرم
             document.getElementById('custName').value = '';
             document.getElementById('custPhone').value = '';
             document.getElementById('custAddr').value = '';
             document.getElementById('qty-coal').textContent = '1';
             
-            // ریست دکمه GPS
             const gpsBtn = document.getElementById('gpsBtn');
             gpsBtn.innerHTML = '📍 ثبت لوکیشن (GPS)';
             gpsBtn.style.background = '';
@@ -1359,24 +1291,17 @@ ${currentLocation ? `📍 لوکیشن: ${currentLocation}` : ''}
             gpsBtn.style.color = '';
             gpsBtn.disabled = false;
             
-            // نمایش فرم
             editOrder();
-            
-            // اسکرول به بالا
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            
             showAlert('فرم سفارش با موفقیت بازنشانی شد!', 'success');
         }
         
-        // بررسی کد مخفی
         function checkSecretCode() {
             const nameInput = document.getElementById('custName');
             const enteredText = nameInput.value.trim();
             
             if (enteredText === SECRET_CODE && !secretEntered) {
                 secretEntered = true;
-                
-                // نمایش اعلان مخفی
                 const notification = document.createElement('div');
                 notification.innerHTML = '🔓 دسترسی ویژه فعال شد! برای ورود به پنل، روی فیلد نام کلیک کنید.';
                 notification.style.cssText = `
@@ -1395,17 +1320,14 @@ ${currentLocation ? `📍 لوکیشن: ${currentLocation}` : ''}
                     text-align: center;
                     max-width: 300px;
                 `;
-                
                 document.body.appendChild(notification);
                 
-                // پاک کردن فیلد و تنظیم event listener
                 setTimeout(() => {
                     nameInput.value = '';
                     nameInput.placeholder = 'برای ورود به پنل مدیریت کلیک کنید';
                     nameInput.style.borderColor = '#e2b04a';
                     nameInput.style.boxShadow = '0 0 15px #e2b04a';
                     nameInput.style.cursor = 'pointer';
-                    
                     nameInput.onclick = function() {
                         window.open('admin-panel.html', '_blank');
                         nameInput.value = '';
@@ -1416,14 +1338,10 @@ ${currentLocation ? `📍 لوکیشن: ${currentLocation}` : ''}
                         nameInput.onclick = null;
                     };
                 }, 1000);
-                
-                setTimeout(() => {
-                    notification.remove();
-                }, 3000);
+                setTimeout(() => notification.remove(), 3000);
             }
         }
         
-        // استوری‌ها
         function openStory(index) {
             const stories = window.storiesData || [];
             if (stories[index]) {
@@ -1433,17 +1351,13 @@ ${currentLocation ? `📍 لوکیشن: ${currentLocation}` : ''}
                 const buttons = document.getElementById('story-buttons');
                 
                 if (modal && content && buttons) {
-                    // نمایش عکس
                     content.innerHTML = `
                         <img src="${story.imageUrl}" alt="${story.title}" 
                              class="story-img" 
                              onerror="this.src='https://via.placeholder.com/400x600/333/fff?text=Story'">
                     `;
-                    
-                    // ایجاد دکمه‌ها
                     buttons.innerHTML = '';
                     
-                    // اگر شماره تماس وجود داشت، دکمه تماس اضافه کن
                     if (story.phone) {
                         const callBtn = document.createElement('a');
                         callBtn.href = `tel:${story.phone}`;
@@ -1452,7 +1366,6 @@ ${currentLocation ? `📍 لوکیشن: ${currentLocation}` : ''}
                         buttons.appendChild(callBtn);
                     }
                     
-                    // اگر لینک وجود داشت، دکمه مشاهده بیشتر اضافه کن
                     if (story.url) {
                         const linkBtn = document.createElement('a');
                         linkBtn.href = story.url;
@@ -1462,15 +1375,8 @@ ${currentLocation ? `📍 لوکیشن: ${currentLocation}` : ''}
                         buttons.appendChild(linkBtn);
                     }
                     
-                    // نمایش مودال
                     modal.style.display = 'flex';
-                    
-                    // اگر هیچ دکمه‌ای نبود، دکمه‌ها را مخفی کن
-                    if (buttons.children.length === 0) {
-                        buttons.style.display = 'none';
-                    } else {
-                        buttons.style.display = 'flex';
-                    }
+                    buttons.style.display = buttons.children.length === 0 ? 'none' : 'flex';
                 }
             }
         }
@@ -1479,7 +1385,6 @@ ${currentLocation ? `📍 لوکیشن: ${currentLocation}` : ''}
             document.getElementById('story-modal').style.display = 'none';
         }
         
-        // اشتراک‌گذاری سایت
         document.getElementById('shareBtn').addEventListener('click', async () => {
             const shareData = {
                 title: 'الو ذغال | سفارش آنلاین ذغال مرغوب',
@@ -1490,15 +1395,11 @@ ${currentLocation ? `📍 لوکیشن: ${currentLocation}` : ''}
             try {
                 if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
                     await navigator.share(shareData);
-                    console.log('اشتراک‌گذاری موفقیت‌آمیز بود');
                 } else {
-                    // اگر Web Share API پشتیبانی نشود
                     await navigator.clipboard.writeText(window.location.href);
                     alert('✅ لینک سایت در کلیپ‌بورد کپی شد!\nمی‌توانید آن را برای دیگران ارسال کنید.');
                 }
             } catch (err) {
-                console.log('خطا در اشتراک‌گذاری:', err);
-                // روش جایگزین: کپی لینک
                 try {
                     await navigator.clipboard.writeText(window.location.href);
                     alert('✅ لینک سایت در کلیپ‌بورد کپی شد!');
@@ -1512,23 +1413,18 @@ ${currentLocation ? `📍 لوکیشن: ${currentLocation}` : ''}
         let deferredPrompt;
         let isAppInstalled = localStorage.getItem('aloozoghal_pwa_installed') === 'true';
         
-        // مخفی کردن بنر اگر کاربر اپ را نصب کرده باشد
         if (isAppInstalled) {
             document.getElementById('pwa-banner').style.display = 'none';
         }
         
         window.addEventListener('beforeinstallprompt', (e) => {
-            // جلوگیری از نمایش پیش‌فرض مرورگر
             e.preventDefault();
             deferredPrompt = e;
-            
-            // نمایش بنر نصب (اگر اپ نصب نشده باشد)
             if (!isAppInstalled) {
                 document.getElementById('pwa-banner').style.display = 'flex';
             }
         });
         
-        // رویداد هنگامی که اپ نصب شد
         window.addEventListener('appinstalled', () => {
             localStorage.setItem('aloozoghal_pwa_installed', 'true');
             isAppInstalled = true;
@@ -1536,49 +1432,34 @@ ${currentLocation ? `📍 لوکیشن: ${currentLocation}` : ''}
             alert('✅ اپلیکیشن الو ذغال با موفقیت نصب شد!');
         });
         
-        // نصب اپلیکیشن
         document.getElementById('installBtn').addEventListener('click', async () => {
             if (deferredPrompt) {
                 deferredPrompt.prompt();
                 const { outcome } = await deferredPrompt.userChoice;
-                
                 if (outcome === 'accepted') {
-                    console.log('User accepted the install prompt');
                     localStorage.setItem('aloozoghal_pwa_installed', 'true');
                     isAppInstalled = true;
                     document.getElementById('pwa-banner').style.display = 'none';
                 }
-                
                 deferredPrompt = null;
             } else {
                 alert('❌ مرورگر شما از نصب اپلیکیشن پشتیبانی نمی‌کند.');
             }
         });
         
-        // بستن بنر نصب
         function closePwaBanner() {
             document.getElementById('pwa-banner').style.display = 'none';
-            // ذخیره در localStorage که کاربر بنر را بسته است
             localStorage.setItem('aloozoghal_pwa_banner_closed', 'true');
         }
         
-        // بارگذاری اولیه
         window.onload = function() {
             initTicker();
-            
-            // بارگذاری تبلیغات از فایل ads-simple.js
-            if(typeof loadAds === 'function') {
-                loadAds();
-            }
-            
-            // ثبت سرویس ورکر
+            if(typeof loadAds === 'function') loadAds();
             if('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('service-worker.js')
                     .then(reg => console.log('Service Worker registered'))
                     .catch(err => console.log('Service Worker registration failed:', err));
             }
-            
-            // اگر کاربر قبلاً بنر را بسته، نشان نده
             const bannerClosed = localStorage.getItem('aloozoghal_pwa_banner_closed') === 'true';
             if (bannerClosed || isAppInstalled) {
                 document.getElementById('pwa-banner').style.display = 'none';
