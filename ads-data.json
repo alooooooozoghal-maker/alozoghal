@@ -1,25 +1,26 @@
 {
   "ads": [
     {
-      "id": 1767354745011,
+      "id": 1767355648293,
       "title": "لباس فوکس",
-      "description": "تخفیف فقط تا پایان هفته",
+      "description": "💯تخفیف تا پایان هفته💯",
       "imageUrl": "https://s6.uupload.ir/files/screenshot_۲۰۲۶۰۱۰۲_۰۸۴۳۴۵_instagram_rju.jpg",
       "phone": "09220730628",
       "link": "https://www.instagram.com/boutique.fox8?igsh=MWlvenlpbHBxNXRzag=="
     }
   ],
-  "stories": [],
-  "tickers": [
+  "stories": [
     {
-      "id": 1767355362967,
-      "text": "سلام عشقم",
-      "phone": "09370214819",
-      "link": null,
-      "color": "#ffffff",
-      "type": "clickable"
+      "id": 1767355774215,
+      "title": "لباس‌فوکس",
+      "imageUrl": "https://s6.uupload.ir/files/screenshot_۲۰۲۶۰۱۰۲_۰۸۴۳۴۵_instagram_rju.jpg",
+      "phone": "09336202228",
+      "url": "https://www.instagram.com/boutique.fox8?igsh=MWlvenlpbHBxNXRzag=="
     }
   ],
-  "generated_at": "2026-01-02T12:02:42.968Z",
-  "version": "1.2"
+  "tickers": [
+    "سلام عشقم"
+  ],
+  "generated_at": "2026-01-02T12:09:34.216Z",
+  "version": "1.1"
 }
