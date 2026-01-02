@@ -1,7 +1,35 @@
 {
   "ads": [],
-  "stories": [],
-  "tickers": [],
-  "generated_at": "2026-01-02T03:02:28.546Z",
+  "stories": [
+    {
+      "id": 1767325916656,
+      "title": "گوشت قرمز ۶۰۰",
+      "imageUrl": "https://s6.uupload.ir/files/8f6dcedf3dc3dbaa82c0df548bd962c9_mho.jpg",
+      "phone": "09370214819",
+      "url": null
+    }
+  ],
+  "tickers": [
+    "سلام عشقم"
+  ],
+  "generated_at": "2026-01-02T03:52:03.735Z",
+  "version": "1.1"
+}
+
+{
+  "ads": [],
+  "stories": [
+    {
+      "id": 1767323031049,
+      "title": "علی",
+      "imageUrl": "https://s6.uupload.ir/files/8f6dcedf3dc3dbaa82c0df548bd962c9_mho.jpg",
+      "phone": "09370214819",
+      "url": null
+    }
+  ],
+  "tickers": [
+    "سلام عشقم"
+  ],
+  "generated_at": "2026-01-02T03:50:51.262Z",
   "version": "1.1"
 }
