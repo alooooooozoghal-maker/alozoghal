@@ -1,5 +1,5 @@
 // سیستم بارگذاری تبلیغات برای الو ذغال
-// نسخه 1.1 - با پشتیبانی از شماره تماس در استوری‌ها
+// نسخه 1.1 - بدون تبلیغات پیش‌فرض
 
 const ADS_DATA_URL = 'ads-data.json';
 
@@ -12,11 +12,34 @@ async function loadAds() {
         }
         
         const data = await response.json();
+        
+        // اگر داده‌ای در فایل json نبود، از localStorage بارگذاری کن
+        if (!data.ads || data.ads.length === 0) {
+            const savedAds = localStorage.getItem('aloozoghal_ads');
+            if (savedAds) {
+                data.ads = JSON.parse(savedAds);
+            }
+        }
+        
+        if (!data.stories || data.stories.length === 0) {
+            const savedStories = localStorage.getItem('aloozoghal_stories');
+            if (savedStories) {
+                data.stories = JSON.parse(savedStories);
+            }
+        }
+        
+        if (!data.tickers || data.tickers.length === 0) {
+            const savedTickers = localStorage.getItem('aloozoghal_tickers');
+            if (savedTickers) {
+                data.tickers = JSON.parse(savedTickers);
+            }
+        }
+        
         displayAds(data.ads || []);
         displayStories(data.stories || []);
         
-        // ذخیره تیکرها در localStorage
-        if(data.tickers && data.tickers.length > 0) {
+        // ذخیره تیکرها در localStorage (برای استفاده در تیکر)
+        if (data.tickers && data.tickers.length > 0) {
             localStorage.setItem('aloozoghal_tickers', JSON.stringify(data.tickers));
         }
         
@@ -24,9 +47,20 @@ async function loadAds() {
         
     } catch (error) {
         console.error('خطا در بارگذاری تبلیغات:', error);
-        // استفاده از تبلیغات پیش‌فرض
-        loadDefaultAds();
+        // اگر فایل ads-data.json وجود نداشت، از localStorage بارگذاری کن
+        loadFromLocalStorage();
     }
+}
+
+function loadFromLocalStorage() {
+    const ads = JSON.parse(localStorage.getItem('aloozoghal_ads') || '[]');
+    const stories = JSON.parse(localStorage.getItem('aloozoghal_stories') || '[]');
+    const tickers = JSON.parse(localStorage.getItem('aloozoghal_tickers') || '[]');
+    
+    displayAds(ads);
+    displayStories(stories);
+    
+    // تیکرها در initTicker در index.html مدیریت می‌شوند
 }
 
 // نمایش تبلیغات VIP
@@ -103,63 +137,6 @@ function displayStories(stories) {
     
     // ذخیره استوری‌ها در window برای دسترسی در مودال
     window.storiesData = stories;
-}
-
-// تبلیغات پیش‌فرض
-function loadDefaultAds() {
-    const defaultAds = [
-        {
-            id: 1,
-            title: "پیتزا ایذه",
-            description: "پیتزای داغ با بهترین مواد اولیه. تحویل رایگان در ایذه",
-            imageUrl: "https://via.placeholder.com/300x300/333/fff?text=Pizza+Ad",
-            phone: "09123456789",
-            link: null
-        },
-        {
-            id: 2,
-            title: "قهوه‌خانه سنتی",
-            description: "محلی دنج برای استراحت و نوشیدن چای و قهوه",
-            imageUrl: "https://via.placeholder.com/300x300/333/fff?text=Coffee+Shop",
-            phone: "09129876543",
-            link: "https://example.com"
-        }
-    ];
-    
-    const defaultStories = [
-        {
-            id: 1,
-            title: "تخفیف ویژه",
-            imageUrl: "https://via.placeholder.com/300x300/333/fff?text=Discount+50%",
-            phone: "09123456789",
-            url: "#"
-        },
-        {
-            id: 2,
-            title: "محصول جدید",
-            imageUrl: "https://via.placeholder.com/300x300/333/fff?text=New+Product",
-            phone: "09129876543",
-            url: "#"
-        }
-    ];
-    
-    displayAds(defaultAds);
-    displayStories(defaultStories);
-}
-
-// بارگذاری استوری‌ها از localStorage (برای backup)
-function loadStories() {
-    try {
-        const savedStories = localStorage.getItem('aloozoghal_stories');
-        if(savedStories) {
-            const stories = JSON.parse(savedStories);
-            if(stories.length > 0) {
-                displayStories(stories);
-            }
-        }
-    } catch(e) {
-        console.error('خطا در بارگیری استوری‌ها از localStorage:', e);
-    }
 }
 
 // بارگذاری خودکار تبلیغات
