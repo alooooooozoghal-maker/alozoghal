@@ -1,4 +1,43 @@
 {
+  "ads": [
+    {
+      "id": 1767326515402,
+      "title": "لباس فوکس",
+      "description": "بهترین و به روزترین کالکشنهای روز",
+      "imageUrl": "https://s6.uupload.ir/files/8f6dcedf3dc3dbaa82c0df548bd962c9_mho.jpg",
+      "phone": "09220730628",
+      "link": null
+    },
+    {
+      "id": 1767326630744,
+      "title": "لباس فوکس",
+      "description": "پاساژ علایدین",
+      "imageUrl": "https://s6.uupload.ir/files/8f6dcedf3dc3dbaa82c0df548bd962c9_mho.jpg",
+      "phone": "09220730628",
+      "link": null
+    }
+  ],
+  "stories": [
+    {
+      "id": 1767325916656,
+      "title": "گوشت قرمز ۶۰۰",
+      "imageUrl": "https://s6.uupload.ir/files/8f6dcedf3dc3dbaa82c0df548bd962c9_mho.jpg",
+      "phone": "09370214819",
+      "url": null
+    }
+  ],
+  "tickers": [
+    "سلام عشقم"
+  ],
+  "generated_at": "2026-01-02T04:03:50.745Z",
+  "version": "1.1"
+}
+
+
+
+
+
+{
   "ads": [],
   "stories": [
     {
