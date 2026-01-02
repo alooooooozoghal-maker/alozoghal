@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الو ذغال | سفارش آنلاین ذغال </title>
+    <title>الو ذغال | سفارش آنلاین ذغال</title>
     
     <!-- PWA Config -->
     <link rel="manifest" href="manifest.json">
@@ -44,29 +44,46 @@
             padding-bottom: 50px;
         }
         
-        /* تیکر تبلیغاتی */
+        /* تیکر تبلیغاتی (بزرگتر و شکیل‌تر شده) */
         .ticker-container {
             width: 100%;
-            max-width: 450px;
-            background: #000;
-            border-bottom: 2px solid var(--gold);
+            max-width: 500px;
+            background: linear-gradient(90deg, #000, #1a1a1a, #000);
+            border-bottom: 4px solid var(--gold);
+            border-top: 2px solid var(--gold);
             overflow: hidden;
             white-space: nowrap;
-            padding: 10px 0;
-            margin-bottom: 15px;
+            padding: 15px 0;
+            margin-bottom: 20px;
             position: relative;
-            border-radius: 0 0 10px 10px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(226, 176, 74, 0.3);
+        }
+        
+        .ticker-text {
+            display: inline-block;
+            padding-right: 100%;
+            animation: marquee 20s linear infinite;
+            color: var(--gold);
+            font-size: 18px;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 77, 0, 0.5);
+            letter-spacing: 1px;
         }
         
         .ticker-link {
-            display: inline-block;
-            padding-right: 100%;
-            animation: marquee 25s linear infinite;
-            color: var(--gold);
-            font-size: 14px;
-            font-weight: 500;
             text-decoration: none;
-            cursor: pointer;
+            color: var(--gold);
+            display: inline-block;
+            padding: 0 15px;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+        
+        .ticker-link:hover {
+            color: #fff;
+            text-shadow: 0 0 15px var(--fire);
+            transform: scale(1.05);
         }
         
         @keyframes marquee {
@@ -140,7 +157,7 @@
             width: 100%;
             max-width: 450px;
             scrollbar-width: none;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
         
         .stories-container::-webkit-scrollbar {
@@ -196,25 +213,25 @@
             text-overflow: ellipsis;
         }
         
-        /* کادر تخفیف کوچک زیر استوری‌ها */
+        /* کادر تخفیف زیر استوری‌ها (نصف عرض صفحه شده) */
         .discount-box {
-            width: auto;
-            max-width: 250px;
-            background: linear-gradient(135deg, #ff4d00, #ff9900);
-            color: white;
+            width: 50%;
+            max-width: 225px;
+            background: linear-gradient(135deg, #ff4d00, #e2b04a);
+            border-radius: 8px;
+            padding: 6px 10px;
+            margin: 3px 0 8px 0;
             text-align: center;
-            padding: 8px 15px;
-            border-radius: 10px;
-            margin: 5px auto 15px auto;
             font-weight: bold;
-            font-size: 14px;
-            box-shadow: 0 4px 12px rgba(255, 77, 0, 0.4);
-            animation: pulseDiscount 1.5s infinite alternate;
+            font-size: 11px;
+            color: #000;
+            animation: pulseDiscount 2s infinite;
+            box-shadow: 0 3px 8px rgba(255, 77, 0, 0.3);
         }
         
         @keyframes pulseDiscount {
-            0% { transform: scale(1); box-shadow: 0 4px 12px rgba(255, 77, 0, 0.4); }
-            100% { transform: scale(1.05); box-shadow: 0 6px 18px rgba(255, 77, 0, 0.6); }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
         }
         
         /* تبلیغات VIP */
@@ -626,22 +643,22 @@
             box-shadow: 0 8px 20px rgba(226, 176, 74, 0.5);
         }
         
-        /* دکمه اشتراک‌گذاری شناور - مستطیل کوچک چشمک‌زن */
+        /* دکمه اشتراک‌گذاری شناور (مستطیل شده) */
         .share-float {
             position: fixed;
             bottom: 90px;
             right: 20px;
-            background: linear-gradient(135deg, #ff4d00, #ff9900);
+            background: #25D366;
             width: 70px;
-            height: 70px;
-            border-radius: 12px;
+            height: 60px;
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            font-size: 12px;
+            font-size: 11px;
             z-index: 1000;
-            box-shadow: 0 5px 15px rgba(255, 77, 0, 0.4);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             transition: all 0.3s;
             border: none;
             cursor: pointer;
@@ -649,27 +666,13 @@
             font-weight: bold;
             text-align: center;
             line-height: 1.3;
-            padding: 8px;
-            animation: blinkShare 1.5s infinite alternate;
-        }
-        
-        @keyframes blinkShare {
-            0% { 
-                transform: scale(1); 
-                box-shadow: 0 5px 15px rgba(255, 77, 0, 0.4);
-                background: linear-gradient(135deg, #ff4d00, #ff9900);
-            }
-            100% { 
-                transform: scale(1.05); 
-                box-shadow: 0 8px 20px rgba(255, 77, 0, 0.7), 0 0 20px rgba(255, 77, 0, 0.5);
-                background: linear-gradient(135deg, #ff9900, #ff4d00);
-            }
+            padding: 8px 5px;
+            flex-direction: column;
         }
         
         .share-float:hover {
-            transform: scale(1.1);
-            animation: none;
-            box-shadow: 0 10px 25px rgba(255, 77, 0, 0.8);
+            transform: scale(1.1) rotate(-5deg);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
         }
         
         /* دکمه مخفی پنل */
@@ -812,9 +815,10 @@
             backdrop-filter: blur(10px);
             box-shadow: 0 0 30px rgba(226, 176, 74, 0.6);
             animation: slideUp 0.5s ease-out;
-            display: none;
+            display: flex;
             align-items: center;
             gap: 15px;
+            display: none; /* ابتدا مخفی */
         }
         
         @keyframes slideUp {
@@ -875,9 +879,11 @@
     <!-- دکمه مخفی پنل مدیریت -->
     <button class="secret-admin-link" onclick="window.open('admin-panel.html', '_blank')" title="ورود به پنل مدیریت">⚙️</button>
 
-    <!-- تیکر تبلیغاتی -->
+    <!-- تیکر تبلیغاتی (بزرگتر و شکیل‌تر شده) -->
     <div class="ticker-container">
-        <a href="tel:09220730628" class="ticker-link" id="ticker-box">🔥 الو ذغال | سفارش آنلاین ذغال مرغوب | تحویل سریع در ایذه 🔥</a>
+        <div class="ticker-text" id="ticker-box">
+            <!-- تیکرها از طریق JavaScript لود می‌شوند -->
+        </div>
     </div>
 
     <!-- بنر نصب PWA -->
@@ -905,8 +911,8 @@
         <div class="stories-container" id="stories-container">
             <!-- استوری‌ها از طریق JavaScript لود می‌شوند -->
         </div>
-        
-        <!-- کادر تخفیف کوچک زیر استوری‌ها -->
+
+        <!-- کادر تخفیف (نصف عرض صفحه شده) -->
         <div class="discount-box">
             💯 توی ایذه امروز کی تخفیف گذاشته👇
         </div>
@@ -1045,8 +1051,14 @@
     <!-- دکمه تماس شناور -->
     <a href="tel:09220730628" class="call-float">📞</a>
     
-    <!-- دکمه اشتراک‌گذاری شناور - مستطیل کوچک چشمک‌زن -->
-    <button class="share-float" id="shareBtn" title="اشتراک‌گذاری سایت">💥الوذغال رو بفرست برا دوستات🚀</button>
+    <!-- دکمه اشتراک‌گذاری شناور (مستطیل شده) -->
+    <button class="share-float" id="shareBtn" title="اشتراک‌گذاری سایت">
+        <span style="font-size: 14px;">💥</span>
+        <span>الوذغال</span>
+        <span>بفرست</span>
+        <span>برا دوستات</span>
+        <span style="font-size: 12px;">🚀</span>
+    </button>
 
     <!-- اسکریپت تبلیغات -->
     <script src="ads-simple.js"></script>
@@ -1063,31 +1075,87 @@
         const COAL_PRICE = 65000;
         let finalMsg = "";
         
-        // تیکر تبلیغاتی - از localStorage بارگیری می‌شود
-        const tickerMessages = [
-            { text: "🔥 الو ذغال | سفارش آنلاین ذغال مرغوب | تحویل سریع در ایذه 🔥", phone: "09220730628" },
-            { text: "🎉 تخفیف ویژه اولین سفارش | تماس بگیرید: ۰۹۲۲-۰۷۳-۰۶۲۸ 🎉", phone: "09220730628" }
-        ];
-        
+        // تیکرها - از localStorage بارگیری می‌شوند
+        let tickers = [];
         let currentTickerIndex = 0;
+        let tickerInterval;
         
+        // فوری لود کردن تیکرها
         function initTicker() {
-            // تیکر را بلافاصله نمایش بده
+            // بارگذاری تیکرها از localStorage
+            const savedTickers = localStorage.getItem('aloozoghal_tickers');
+            if(savedTickers) {
+                try {
+                    const parsed = JSON.parse(savedTickers);
+                    if(Array.isArray(parsed) && parsed.length > 0) {
+                        tickers = parsed;
+                    }
+                } catch(e) {
+                    console.log('خطا در بارگیری متن‌های تیکر');
+                }
+            }
+            
+            // اگر تیکری نبود، یک تیکر پیش‌فرض اضافه کن
+            if (tickers.length === 0) {
+                tickers = [
+                    {
+                        text: "🔥 الو ذغال | سفارش آنلاین ذغال مرغوب | تحویل سریع در ایذه 🔥",
+                        phone: "09220730628"
+                    }
+                ];
+                localStorage.setItem('aloozoghal_tickers', JSON.stringify(tickers));
+            }
+            
+            // نمایش اولین تیکر فوری
             updateTicker();
             
-            // تغییر خودکار هر 20 ثانیه
-            setInterval(() => {
-                currentTickerIndex = (currentTickerIndex + 1) % tickerMessages.length;
-                updateTicker();
-            }, 20000);
+            // تغییر خودکار تیکرها
+            startTickerRotation();
         }
         
+        // چرخش تیکرها
+        function startTickerRotation() {
+            if (tickerInterval) {
+                clearInterval(tickerInterval);
+            }
+            
+            if (tickers.length > 1) {
+                tickerInterval = setInterval(() => {
+                    currentTickerIndex = (currentTickerIndex + 1) % tickers.length;
+                    updateTicker();
+                }, 20000); // هر 20 ثانیه
+            }
+        }
+        
+        // آپدیت تیکر
         function updateTicker() {
-            if(tickerMessages.length === 0) return;
-            const ticker = tickerMessages[currentTickerIndex];
+            if(tickers.length === 0) return;
+            
+            const ticker = tickers[currentTickerIndex];
             const tickerBox = document.getElementById('ticker-box');
-            tickerBox.innerHTML = ticker.text;
-            tickerBox.href = `tel:${ticker.phone}`;
+            
+            // اگر تیکر شیء دارای phone است
+            if (typeof ticker === 'object' && ticker.phone) {
+                tickerBox.innerHTML = `
+                    <a href="tel:${ticker.phone}" class="ticker-link">
+                        ${ticker.text}
+                    </a>
+                `;
+            } else if (typeof ticker === 'string') {
+                // اگر تیکر رشته ساده است (برای سازگاری با داده‌های قدیمی)
+                tickerBox.innerHTML = `
+                    <span class="ticker-link">
+                        ${ticker}
+                    </span>
+                `;
+            } else if (typeof ticker === 'object' && ticker.text) {
+                // اگر تیکر شیء است اما phone ندارد
+                tickerBox.innerHTML = `
+                    <span class="ticker-link">
+                        ${ticker.text}
+                    </span>
+                `;
+            }
         }
         
         // مدیریت کمیت
@@ -1415,7 +1483,7 @@ ${currentLocation ? `📍 لوکیشن: ${currentLocation}` : ''}
         document.getElementById('shareBtn').addEventListener('click', async () => {
             const shareData = {
                 title: 'الو ذغال | سفارش آنلاین ذغال مرغوب',
-                text: '💥الوذغال رو بفرست برا دوستات🚀\nسفارش آنلاین ذغال مرغوب در ایذه 🔥',
+                text: '🔥 سفارش آنلاین ذغال مرغوب در ایذه 🔥\nسریع و آسان از الو ذغال خرید کنید!',
                 url: window.location.href
             };
             
@@ -1496,7 +1564,6 @@ ${currentLocation ? `📍 لوکیشن: ${currentLocation}` : ''}
         
         // بارگذاری اولیه
         window.onload = function() {
-            // تیکر را فوراً بارگذاری کن
             initTicker();
             
             // بارگذاری تبلیغات از فایل ads-simple.js
@@ -1519,4 +1586,4 @@ ${currentLocation ? `📍 لوکیشن: ${currentLocation}` : ''}
         };
     </script>
 </body>
-                </html>
+    </html>
