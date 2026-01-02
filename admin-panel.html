@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پنل مدیریت | الو ذغال</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+    
+    <style>
+        :root {
+            --primary: #e2b04a;
+            --dark: #1a1a1a;
+            --light: #f5f5f5;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .admin-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid var(--primary);
+        }
+        
+        .admin-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .admin-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .admin-title {
+            color: var(--primary);
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .admin-subtitle {
+            color: #ccc;
+            font-size: 16px;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 12px 25px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #444;
+            color: #ccc;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn.active {
+            background: var(--primary);
+            color: #000;
+            font-weight: bold;
+            border-color: var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .form-section {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid #333;
+        }
+        
+        .section-title {
+            color: var(--primary);
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #444;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ccc;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #555;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 16px;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(226, 176, 74, 0.3);
+        }
+        
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: #000;
+        }
+        
+        .btn-primary:hover {
+            background: #d4a742;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: #555;
+            color: #fff;
+        }
+        
+        .btn-danger {
+            background: #8b0000;
+            color: #fff;
+        }
+        
+        .ads-list {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+        
+        .ad-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid #444;
+            transition: all 0.3s;
+        }
+        
+        .ad-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .ad-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #555;
+        }
+        
+        .ad-title {
+            color: var(--primary);
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .ad-desc {
+            color: #ccc;
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .ad-phone {
+            color: #25D366;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .ad-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .json-output {
+            background: #000;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 400px;
+            overflow-y: auto;
+            color: #0f0;
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            display: none;
+        }
+        
+        .alert-success {
+            background: rgba(37, 211, 102, 0.1);
+            border: 1px solid #25D366;
+            color: #25D366;
+        }
+        
+        .alert-danger {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid #ff0000;
+            color: #ff0000;
+        }
+        
+        .instructions {
+            background: rgba(226, 176, 74, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        
+        .instructions h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .instructions ol {
+            padding-right: 20px;
+            color: #ccc;
+            line-height: 1.8;
+        }
+        
+        @media (max-width: 768px) {
+            .admin-container {
+                padding: 15px;
+            }
+            
+            .ads-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-header">
+            <img src="https://raw.githubusercontent.com/aloozoghal-hash/alozoghal/main/8f6dcedf3dc3dbaa82c0df548bd962c9.jpg" class="admin-logo">
+            <h1 class="admin-title">پنل مدیریت تبلیغات الو ذغال</h1>
+            <p class="admin-subtitle">مدیریت کامل تبلیغات، استوری‌ها و متن‌های متحرک</p>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('ads')">📢 تبلیغات VIP</button>
+            <button class="tab-btn" onclick="showTab('stories')">📸 استوری‌ها</button>
+            <button class="tab-btn" onclick="showTab('tickers')">🏃 متن‌های متحرک</button>
+            <button class="tab-btn" onclick="showTab('export')">💾 خروجی JSON</button>
+        </div>
+        
+        <!-- تب تبلیغات VIP -->
+        <div id="ads-tab" class="tab-content active">
+            <div class="instructions">
+                <h3>📋 راهنمای افزودن تبلیغ VIP:</h3>
+                <ol>
+                    <li>اطلاعات تبلیغ را وارد کنید</li>
+                    <li>لینک عکس تبلیغ باید مستقیم باشد (مانند لینک GitHub)</li>
+                    <li>شماره تماس باید با ۰۹ شروع شود</li>
+                    <li>پس از افزودن، حتماً خروجی JSON را ذخیره کنید</li>
+                </ol>
+            </div>
+            
+            <div class="form-section">
+                <h2 class="section-title">افزودن تبلیغ جدید</h2>
+                <form id="ad-form">
+                    <div class="form-group">
+                        <label class="form-label">عنوان تبلیغ:</label>
+                        <input type="text" id="ad-title" class="form-control" placeholder="مثال: پیتزا ایذه" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">توضیحات تبلیغ:</label>
+                        <textarea id="ad-desc" class="form-control" placeholder="توضیحات کامل درباره کسب و کار..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">لینک عکس تبلیغ:</label>
+                        <input type="url" id="ad-image" class="form-control" placeholder="https://example.com/image.jpg" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">شماره تماس تبلیغ‌دهنده:</label>
+                        <input type="tel" id="ad-phone" class="form-control" placeholder="09123456789" pattern="[0-9]{11}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">لینک وبسایت (اختیاری):</label>
+                        <input type="url" id="ad-link" class="form-control" placeholder="https://example.com">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">➕ افزودن تبلیغ</button>
+                </form>
+            </div>
+            
+            <div class="form-section">
+                <h2 class="section-title">تبلیغات موجود</h2>
+                <div id="ads-list" class="ads-list">
+                    <!-- تبلیغات از localStorage لود می‌شوند -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- تب استوری‌ها -->
+        <div id="stories-tab" class="tab-content">
+            <div class="instructions">
+                <h3>📋 راهنمای افزودن استوری:</h3>
+                <ol>
+                    <li>عکس استوری باید مربعی باشد (نسبت ۱:۱)</li>
+                    <li>شماره تماس اختیاری است (برای دکمه تماس مستقیم)</li>
+                    <li>لینک هم اختیاری است (برای دکمه مشاهده بیشتر)</li>
+                    <li>حداقل یکی از شماره تماس یا لینک باید وارد شود</li>
+                    <li>حداکثر ۱۰ استوری قابل نمایش است</li>
+                </ol>
+            </div>
+            
+            <div class="form-section">
+                <h2 class="section-title">افزودن استوری جدید</h2>
+                <form id="story-form">
+                    <div class="form-group">
+                        <label class="form-label">عنوان استوری:</label>
+                        <input type="text" id="story-title" class="form-control" placeholder="مثال: تخفیف ویژه" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">لینک عکس استوری:</label>
+                        <input type="url" id="story-image" class="form-control" placeholder="https://example.com/story.jpg" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">شماره تماس (اختیاری):</label>
+                        <input type="tel" id="story-phone" class="form-control" placeholder="09123456789">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">لینک وبسایت (اختیاری):</label>
+                        <input type="url" id="story-url" class="form-control" placeholder="https://example.com">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">➕ افزودن استوری</button>
+                </form>
+            </div>
+            
+            <div class="form-section">
+                <h2 class="section-title">استوری‌های موجود</h2>
+                <div id="stories-list" class="ads-list">
+                    <!-- استوری‌ها از localStorage لود می‌شوند -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- تب متن‌های متحرک -->
+        <div id="tickers-tab" class="tab-content">
+            <div class="form-section">
+                <h2 class="section-title">مدیریت متن‌های متحرک</h2>
+                <p style="color: #ccc; margin-bottom: 20px;">متن‌هایی که در بالای صفحه به صورت متحرک نمایش داده می‌شوند.</p>
+                
+                <form id="ticker-form">
+                    <div class="form-group">
+                        <label class="form-label">متن جدید:</label>
+                        <input type="text" id="ticker-text" class="form-control" placeholder="متن تبلیغاتی..." required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">➕ افزودن متن</button>
+                </form>
+                
+                <div class="form-group" style="margin-top: 30px;">
+                    <label class="form-label">متن‌های موجود:</label>
+                    <div id="tickers-list">
+                        <!-- متن‌ها از localStorage لود می‌شوند -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- تب خروجی -->
+        <div id="export-tab" class="tab-content">
+            <div class="instructions">
+                <h3>📋 راهنمای ذخیره‌سازی:</h3>
+                <ol>
+                    <li>کد JSON زیر را کپی کنید</li>
+                    <li>به ریپازیتوری GitHub خود بروید</li>
+                    <li>فایل ads-data.json را باز کنید</li>
+                    <li>محتوای قبلی را حذف و کد جدید را جایگزین کنید</li>
+                    <li>تغییرات را commit و push کنید</li>
+                    <li>چند دقیقه صبر کنید تا سایت آپدیت شود</li>
+                </ol>
+            </div>
+            
+            <div class="form-section">
+                <h2 class="section-title">خروجی JSON تبلیغات</h2>
+                <button onclick="generateJSON()" class="btn btn-primary" style="margin-bottom: 20px;">🔄 تولید کد JSON</button>
+                <div id="json-output" class="json-output">
+                    {/* JSON اینجا نمایش داده می‌شود */}
+                </div>
+                
+                <div style="margin-top: 20px; display: flex; gap: 10px;">
+                    <button onclick="copyJSON()" class="btn btn-secondary">📋 کپی JSON</button>
+                    <button onclick="downloadJSON()" class="btn btn-primary">💾 دانلود فایل</button>
+                    <button onclick="clearAllData()" class="btn btn-danger">🗑️ پاک کردن همه داده‌ها</button>
+                </div>
+            </div>
+            
+            <div class="alert" id="alert-message"></div>
+        </div>
+    </div>
+
+    <script>
+        // داده‌های اولیه
+        let ads = [];
+        let stories = [];
+        let tickers = [
+            "🔥 الو ذغال | سفارش آنلاین ذغال مرغوب | تحویل سریع در ایذه 🔥",
+            "🎉 با خرید 3 کیسه ذغال، یک بسته سبزی رایگان دریافت کنید!",
+            "🚚 تحویل رایگان برای سفارش‌های بالای 200,000 تومان",
+            "⭐ ذغال مرغوب کبابی با کیفیت عالی | ضمانت برگشت"
+        ];
+        
+        // بارگذاری داده‌ها از localStorage
+        function loadData() {
+            // تبلیغات
+            const savedAds = localStorage.getItem('aloozoghal_ads');
+            if(savedAds) {
+                try {
+                    ads = JSON.parse(savedAds);
+                } catch(e) {
+                    console.error('خطا در بارگیری تبلیغات:', e);
+                    ads = [];
+                }
+            }
+            
+            // استوری‌ها
+            const savedStories = localStorage.getItem('aloozoghal_stories');
+            if(savedStories) {
+                try {
+                    stories = JSON.parse(savedStories);
+                } catch(e) {
+                    console.error('خطا در بارگیری استوری‌ها:', e);
+                    stories = [];
+                }
+            }
+            
+            // تیکرها
+            const savedTickers = localStorage.getItem('aloozoghal_tickers');
+            if(savedTickers) {
+                try {
+                    tickers = JSON.parse(savedTickers);
+                } catch(e) {
+                    console.error('خطا در بارگیری تیکرها:', e);
+                }
+            }
+            
+            // نمایش داده‌ها
+            displayAds();
+            displayStories();
+            displayTickers();
+        }
+        
+        // نمایش تب‌ها
+        function showTab(tabName) {
+            // مخفی کردن همه تب‌ها
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // غیرفعال کردن همه دکمه‌ها
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // نمایش تب انتخاب شده
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // فعال کردن دکمه مربوطه
+            event.target.classList.add('active');
+        }
+        
+        // فرم تبلیغات
+        document.getElementById('ad-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const newAd = {
+                id: Date.now(),
+                title: document.getElementById('ad-title').value,
+                description: document.getElementById('ad-desc').value,
+                imageUrl: document.getElementById('ad-image').value,
+                phone: document.getElementById('ad-phone').value,
+                link: document.getElementById('ad-link').value || null
+            };
+            
+            ads.push(newAd);
+            localStorage.setItem('aloozoghal_ads', JSON.stringify(ads));
+            
+            displayAds();
+            showAlert('تبلیغ با موفقیت اضافه شد!', 'success');
+            
+            // ریست فرم
+            this.reset();
+        });
+        
+        // فرم استوری‌ها
+        document.getElementById('story-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const phone = document.getElementById('story-phone').value.trim();
+            const url = document.getElementById('story-url').value.trim();
+            
+            // اعتبارسنجی: حداقل یکی از شماره تماس یا لینک باید وارد شده باشد
+            if (!phone && !url) {
+                showAlert('لطفاً حداقل یکی از فیلدهای شماره تماس یا لینک را پر کنید.', 'danger');
+                return;
+            }
+            
+            const newStory = {
+                id: Date.now(),
+                title: document.getElementById('story-title').value,
+                imageUrl: document.getElementById('story-image').value,
+                phone: phone || null,
+                url: url || null
+            };
+            
+            stories.push(newStory);
+            
+            // محدود کردن به ۱۰ استوری
+            if(stories.length > 10) {
+                stories = stories.slice(-10);
+            }
+            
+            localStorage.setItem('aloozoghal_stories', JSON.stringify(stories));
+            
+            displayStories();
+            showAlert('استوری با موفقیت اضافه شد!', 'success');
+            
+            // ریست فرم
+            this.reset();
+        });
+        
+        // فرم تیکرها
+        document.getElementById('ticker-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const newTicker = document.getElementById('ticker-text').value.trim();
+            if(newTicker) {
+                tickers.push(newTicker);
+                localStorage.setItem('aloozoghal_tickers', JSON.stringify(tickers));
+                
+                displayTickers();
+                showAlert('متن متحرک با موفقیت اضافه شد!', 'success');
+                
+                // ریست فرم
+                this.reset();
+            }
+        });
+        
+        // نمایش تبلیغات
+        function displayAds() {
+            const container = document.getElementById('ads-list');
+            container.innerHTML = '';
+            
+            if(ads.length === 0) {
+                container.innerHTML = '<p style="color: #ccc; text-align: center; width: 100%;">هیچ تبلیغی وجود ندارد</p>';
+                return;
+            }
+            
+            ads.forEach(ad => {
+                const adCard = document.createElement('div');
+                adCard.className = 'ad-card';
+                adCard.innerHTML = `
+                    <img src="${ad.imageUrl}" alt="${ad.title}" class="ad-img" onerror="this.src='https://via.placeholder.com/300x150/333/fff?text=Ad+Image'">
+                    <h3 class="ad-title">${ad.title}</h3>
+                    <p class="ad-desc">${ad.description.substring(0, 100)}...</p>
+                    <div class="ad-phone">📱 ${ad.phone}</div>
+                    <div class="ad-actions">
+                        <button onclick="deleteAd(${ad.id})" class="btn btn-danger">حذف</button>
+                        <button onclick="editAd(${ad.id})" class="btn btn-secondary">ویرایش</button>
+                    </div>
+                `;
+                container.appendChild(adCard);
+            });
+        }
+        
+        // نمایش استوری‌ها
+        function displayStories() {
+            const container = document.getElementById('stories-list');
+            container.innerHTML = '';
+            
+            if(stories.length === 0) {
+                container.innerHTML = '<p style="color: #ccc; text-align: center; width: 100%;">هیچ استوری وجود ندارد</p>';
+                return;
+            }
+            
+            stories.forEach(story => {
+                const storyCard = document.createElement('div');
+                storyCard.className = 'ad-card';
+                storyCard.innerHTML = `
+                    <img src="${story.imageUrl}" alt="${story.title}" class="ad-img" style="height: 150px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/300x300/333/fff?text=Story'">
+                    <h3 class="ad-title">${story.title}</h3>
+                    ${story.phone ? `<div class="ad-phone">📱 ${story.phone}</div>` : ''}
+                    ${story.url ? `<div style="color: #e2b04a; font-size: 12px; margin-bottom: 10px;">🔗 ${story.url.substring(0, 30)}...</div>` : ''}
+                    <div class="ad-actions">
+                        <button onclick="deleteStory(${story.id})" class="btn btn-danger">حذف</button>
+                        <button onclick="editStory(${story.id})" class="btn btn-secondary">ویرایش</button>
+                    </div>
+                `;
+                container.appendChild(storyCard);
+            });
+        }
+        
+        // نمایش تیکرها
+        function displayTickers() {
+            const container = document.getElementById('tickers-list');
+            container.innerHTML = '';
+            
+            tickers.forEach((ticker, index) => {
+                const tickerItem = document.createElement('div');
+                tickerItem.className = 'ad-card';
+                tickerItem.style.marginBottom = '10px';
+                tickerItem.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: #ccc;">${ticker}</span>
+                        <button onclick="deleteTicker(${index})" class="btn btn-danger" style="padding: 5px 10px; font-size: 12px;">حذف</button>
+                    </div>
+                `;
+                container.appendChild(tickerItem);
+            });
+        }
+        
+        // حذف تبلیغ
+        function deleteAd(id) {
+            if(confirm('آیا از حذف این تبلیغ مطمئن هستید؟')) {
+                ads = ads.filter(ad => ad.id !== id);
+                localStorage.setItem('aloozoghal_ads', JSON.stringify(ads));
+                displayAds();
+                showAlert('تبلیغ با موفقیت حذف شد!', 'success');
+            }
+        }
+        
+        // حذف استوری
+        function deleteStory(id) {
+            if(confirm('آیا از حذف این استوری مطمئن هستید؟')) {
+                stories = stories.filter(story => story.id !== id);
+                localStorage.setItem('aloozoghal_stories', JSON.stringify(stories));
+                displayStories();
+                showAlert('استوری با موفقیت حذف شد!', 'success');
+            }
+        }
+        
+        // حذف تیکر
+        function deleteTicker(index) {
+            if(confirm('آیا از حذف این متن مطمئن هستید؟')) {
+                tickers.splice(index, 1);
+                localStorage.setItem('aloozoghal_tickers', JSON.stringify(tickers));
+                displayTickers();
+                showAlert('متن با موفقیت حذف شد!', 'success');
+            }
+        }
+        
+        // ویرایش تبلیغ
+        function editAd(id) {
+            const ad = ads.find(ad => ad.id === id);
+            if(ad) {
+                document.getElementById('ad-title').value = ad.title;
+                document.getElementById('ad-desc').value = ad.description;
+                document.getElementById('ad-image').value = ad.imageUrl;
+                document.getElementById('ad-phone').value = ad.phone;
+                document.getElementById('ad-link').value = ad.link || '';
+                
+                // حذف تبلیغ قدیمی
+                ads = ads.filter(a => a.id !== id);
+                localStorage.setItem('aloozoghal_ads', JSON.stringify(ads));
+                displayAds();
+                
+                showAlert('اطلاعات تبلیغ برای ویرایش بارگذاری شد. پس از ویرایش دکمه "افزودن تبلیغ" را بزنید.', 'success');
+            }
+        }
+        
+        // ویرایش استوری
+        function editStory(id) {
+            const story = stories.find(story => story.id === id);
+            if(story) {
+                document.getElementById('story-title').value = story.title;
+                document.getElementById('story-image').value = story.imageUrl;
+                document.getElementById('story-phone').value = story.phone || '';
+                document.getElementById('story-url').value = story.url || '';
+                
+                // حذف استوری قدیمی
+                stories = stories.filter(s => s.id !== id);
+                localStorage.setItem('aloozoghal_stories', JSON.stringify(stories));
+                displayStories();
+                
+                showAlert('اطلاعات استوری برای ویرایش بارگذاری شد. پس از ویرایش دکمه "افزودن استوری" را بزنید.', 'success');
+            }
+        }
+        
+        // تولید JSON
+        function generateJSON() {
+            const jsonData = {
+                ads: ads,
+                stories: stories,
+                tickers: tickers,
+                generated_at: new Date().toISOString(),
+                version: "1.1" // نسخه جدید با پشتیبانی از شماره تماس در استوری‌ها
+            };
+            
+            const jsonOutput = document.getElementById('json-output');
+            jsonOutput.textContent = JSON.stringify(jsonData, null, 2);
+        }
+        
+        // کپی JSON
+        function copyJSON() {
+            const jsonOutput = document.getElementById('json-output');
+            const text = jsonOutput.textContent;
+            
+            if(text && text !== '{/* JSON اینجا نمایش داده می‌شود */}') {
+                navigator.clipboard.writeText(text)
+                    .then(() => showAlert('JSON با موفقیت کپی شد!', 'success'))
+                    .catch(err => showAlert('خطا در کپی کردن: ' + err, 'danger'));
+            } else {
+                showAlert('لطفاً ابتدا JSON را تولید کنید', 'danger');
+            }
+        }
+        
+        // دانلود JSON
+        function downloadJSON() {
+            const jsonOutput = document.getElementById('json-output');
+            const text = jsonOutput.textContent;
+            
+            if(text && text !== '{/* JSON اینجا نمایش داده می‌شود */}') {
+                const blob = new Blob([text], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'ads-data.json';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                showAlert('فایل با موفقیت دانلود شد!', 'success');
+            } else {
+                showAlert('لطفاً ابتدا JSON را تولید کنید', 'danger');
+            }
+        }
+        
+        // پاک کردن همه داده‌ها
+        function clearAllData() {
+            if(confirm('⚠️ آیا از پاک کردن تمامی داده‌ها مطمئن هستید؟ این عمل غیرقابل بازگشت است!')) {
+                localStorage.removeItem('aloozoghal_ads');
+                localStorage.removeItem('aloozoghal_stories');
+                localStorage.removeItem('aloozoghal_tickers');
+                
+                ads = [];
+                stories = [];
+                tickers = [
+                    "🔥 الو ذغال | سفارش آنلاین ذغال مرغوب | تحویل سریع در ایذه 🔥",
+                    "🎉 با خرید 3 کیسه ذغال، یک بسته سبزی رایگان دریافت کنید!",
+                    "🚚 تحویل رایگان برای سفارش‌های بالای 200,000 تومان",
+                    "⭐ ذغال مرغوب کبابی با کیفیت عالی | ضمانت برگشت"
+                ];
+                
+                displayAds();
+                displayStories();
+                displayTickers();
+                generateJSON();
+                
+                showAlert('تمامی داده‌ها با موفقیت پاک شدند!', 'success');
+            }
+        }
+        
+        // نمایش هشدار
+        function showAlert(message, type) {
+            const alertDiv = document.getElementById('alert-message');
+            alertDiv.textContent = message;
+            alertDiv.className = `alert alert-${type}`;
+            alertDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                alertDiv.style.display = 'none';
+            }, 5000);
+        }
+        
+        // بارگذاری اولیه
+        window.onload = function() {
+            loadData();
+            generateJSON();
+        };
+    </script>
+</body>
+  </html>
